@@ -28,15 +28,7 @@ body { font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif; backgro
 .stat-card .label { font-size: 12px; color: #888; margin-top: 2px; }
 .table-wrap { background: #fff; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.login-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,.6); z-index:9999; display:flex; align-items:center; justify-content:center; }
-.login-box { background:#fff; border-radius:12px; padding:40px 36px; box-shadow:0 8px 32px rgba(0,0,0,.2); text-align:center; max-width:380px; width:90%; }
-.login-box h2 { font-size:20px; margin-bottom:8px; color:#1a73e8; }
-.login-box .sub { font-size:13px; color:#888; margin-bottom:24px; }
-.login-box input { width:100%; padding:12px 16px; border:2px solid #e0e0e0; border-radius:8px; font-size:15px; text-align:center; letter-spacing:4px; outline:none; transition:border-color .2s; }
-.login-box input:focus { border-color:#1a73e8; }
-.login-box .login-btn { margin-top:20px; width:100%; padding:12px; background:#1a73e8; color:#fff; border:none; border-radius:8px; font-size:15px; font-weight:600; cursor:pointer; }
-.login-box .login-btn:hover { background:#1557b0; }
-.login-box .error { color:#e53935; font-size:12px; margin-top:8px; display:none; }
+
 thead { background: #f8f9fa; }
 th { padding: 10px 12px; text-align: left; font-weight: 600; color: #555; border-bottom: 2px solid #e0e0e0; white-space: nowrap; position: sticky; top: 0; background: #f8f9fa; }
 td { padding: 10px 12px; border-bottom: 1px solid #eee; vertical-align: top; }
@@ -63,16 +55,6 @@ tr:hover td { background: #f5f8ff; }
 </style>
 </head>
 <body>
-<div class="login-overlay" id="loginOverlay">
-  <div class="login-box">
-    <h2>璁惧缁翠慨璁板綍鏌ヨ</h2>
-    <div class="sub">璇疯緭鍏ヨ闂瘑鐮?/div>
-    <input type="password" id="pwdInput" placeholder="璇疯緭鍏ュ瘑鐮? maxlength="20">
-    <div class="error" id="loginError">瀵嗙爜閿欒锛岃閲嶈瘯</div>
-    <button class="login-btn" onclick="doLogin()">楠岃瘉杩涘叆</button>
-  </div>
-</div>
-<div id="appContent" style="display:none">
 <div class="header">
   <h1>璁惧缁翠慨璁板綍鏌ヨ绯荤粺</h1>
   <p>鍏?3695 鏉＄淮淇褰曪紝瑕嗙洊 7 涓尯鍩熴€?8 绉嶈澶?/p>
@@ -258,36 +240,6 @@ function resetFilters() {
 }
 
 init();
-</script>
-</div>
-<script>
-(function(){
-  var PASS = 'czy123456';
-  var input = document.getElementById('pwdInput');
-  var error = document.getElementById('loginError');
-  var overlay = document.getElementById('loginOverlay');
-  var app = document.getElementById('appContent');
-
-  if (sessionStorage.getItem('_auth') === '1') { showApp(); return; }
-
-  window.doLogin = function() {
-    if (input.value === PASS) {
-      sessionStorage.setItem('_auth', '1');
-      showApp();
-    } else {
-      error.style.display = 'block';
-      input.value = '';
-      input.focus();
-    }
-  };
-  input.addEventListener('keydown', function(e) { if (e.key === 'Enter') doLogin(); });
-  input.focus();
-
-  function showApp() {
-    overlay.style.display = 'none';
-    app.style.display = 'block';
-  }
-})();
 </script>
 </body>
 </html>
